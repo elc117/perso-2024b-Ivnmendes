@@ -1,7 +1,7 @@
 # **TODO List**
 
 - [x] Configuração do container
-- [ ] Elaboração da estrutura de dados de produto
+- [x] Elaboração da estrutura de dados de produto
 - [ ] Configuração para usar banco de dados
 - [ ] Criação dos services de produtos
 - [ ] Configuração do scotty
