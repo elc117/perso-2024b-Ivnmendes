@@ -1,10 +1,12 @@
 {
   "name": "prod personalizada",
-  "dockerFile": "Dockerfile",
-  "extensions": [
-    "justusadam.language-haskell"
-  ],
-  "settings": {
-    "terminal.integrated.defaultProfile.linux": "/bin/bash"
-  }
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "postCreateCommand": "sudo apt-get update && sudo apt-get install -y mysql-server ghc cabal-install && cabal update && sudo apt-get -y install libmysqlclient-dev && sudo apt-get -y install libpcre3-dev && sudo apt-get install -y pkg-config zlib1g-dev",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "haskell.haskell"
+            ]
+        }
+    }
 }
