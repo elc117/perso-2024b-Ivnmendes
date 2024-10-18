@@ -1,18 +1,20 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Config.ConfigDb (withDbConnection) where
+module Config.ConfigDb where
 
-import Database.Persist.MySQL (withMySQLConn, defaultConnectInfo, ConnectInfo(..))
-import Control.Monad.Logger (runStdoutLoggingT)
-import Control.Monad.IO.Class (MonadIO)
+import Control.Monad.Logger (runStderrLoggingT)
+import Database.Persist.MySQL
+import Database.Persist.Sql (SqlBackend)
 
--- Função para conectar ao banco de dados
-withDbConnection :: MonadIO m => (SqlBackend -> m a) -> String -> String -> String -> String -> m a
-withDbConnection action connectHost connectUser connectPassword connectDatabase = runStdoutLoggingT $ withMySQLConn connInfo action
-  where
-    connInfo = defaultConnectInfo {
-        connectHost     = connectHost,
-        connectUser     = connectUser,
-        connectPassword = connectPassword,
-        connectDatabase = connectDatabase
+mySqlConnString :: ConnectInfo
+mySqlConnString = defaultConnectInfo
+    { connectHost     = "localhost"
+    , connectPort     = 3306
+    , connectUser     = "ivnm"
+    , connectPassword = "sua_senha"
+    , connectDatabase = "seu_banco_de_dados"
     }
+
+-- Função para obter o pool de conexões
+createMySQLPool :: IO (ConnectionPool)
+createMySQLPool = runStderrLoggingT $ createMySQLPool mySqlConnString 10

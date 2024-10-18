@@ -6,3 +6,5 @@ $ sudo service mysql restart
 ```
 
 resolve problemas de mysql no codespaces, solução temporária
+
+usar `$sudo mysql -uroot -p` para acessar o mySQL

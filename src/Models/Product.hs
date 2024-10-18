@@ -1,9 +1,13 @@
-{-# LANGUAGE GADTs, GeneralizedNewtypeDeriving, OverloadedStrings, TemplateHaskell, TypeFamilies #-}
+{-# LANGUAGE GADTs #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE QuasiQuotes #-}
+{-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE TypeFamilies #-}
+{-# LANGUAGE FlexibleInstances #-}
 
-module Entities.Product where
+module Models.Product where
 
-import Database.Persist.TH (share, mkPersist, sqlSettings, mkMigrate, persistLowerCase)
-import Data.Text (Text)
+import Database.Persist.TH
 
 share [mkPersist sqlSettings, mkMigrate "migrateAll"] [persistLowerCase|
 Product
