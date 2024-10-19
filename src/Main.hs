@@ -1,19 +1,15 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Main where
+import Control.Monad.IO.Class (liftIO)
+import Database.Persist
+import Database.Persist.Sqlite
+import Control.Monad (void)
 
-import Config.ConfigDb
 import Models.Product
 
-import Database.Persist (insert, get)
-import Database.Persist.Sql (runSqlPersistM)
-import Database.Persist.MySQL (runMySQLPool)
-import Control.Monad.IO.Class (liftIO)
-
 main :: IO ()
-main = do
-    -- Criar o pool de conexões
-    pool <- createMySQLPool
+main = runSqlite "apiHaskell.db" $ do
+    -- Executa as migrações
+    void $ runMigration migrateAll
 
-    -- Executar migrações
-    runSqlPool (runMigration migrateAll) pool
+    void $ insert $ Products "Smartphone" "Samsung" 1999.99
