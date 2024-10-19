@@ -15,3 +15,4 @@
 Links usados para consulta durante o trabalho
 
 - https://chatgpt.com/share/671059ec-9c38-8010-8414-3a3928d7f8c4
+- https://chatgpt.com/share/671301c5-a4f8-8010-b399-d6274a152f85

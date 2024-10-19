@@ -3,3 +3,7 @@ dist-newstyle/
 *.o
 *.hi
 *.log
+
+*.db
+*.db-shm
+*.db-wal
