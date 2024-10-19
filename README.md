@@ -2,7 +2,7 @@
 
 - [x] Configuração do container
 - [x] Elaboração da estrutura de dados de produto
-- [ ] Configuração para usar banco de dados
+- [x] Configuração para usar banco de dados
 - [ ] Criação dos services de produtos
 - [ ] Configuração do scotty
 - [ ] Criação do controller de produtos
