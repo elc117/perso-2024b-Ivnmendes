@@ -16,10 +16,14 @@ executable perso-
     build-depends:    
         base
         ,persistent
-        , persistent-sqlite
-                 
+        ,persistent-sqlite
+        ,monad-control
+        ,transformers
+        ,mtl >= 2.2
     other-modules:    
         Models.Product
+        ,Services.ProductsServices
+        ,Util.Validators
     hs-source-dirs:   src
     default-language: Haskell2010
     
