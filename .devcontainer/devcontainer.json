@@ -1,10 +1,11 @@
 {
   "name": "prod personalizada",
   "dockerFile": "Dockerfile",
-  "extensions": [
-    "justusadam.language-haskell"
-  ],
-  "settings": {
-    "terminal.integrated.defaultProfile.linux": "/bin/bash"
-  }
+  "customizations": {
+      "vscode": {
+        "extensions": [
+            "haskell.haskell"
+        ]
+      }
+    }
 }
