@@ -11,10 +11,10 @@ Necessário ter ```ghc```, ```cabal``` e ```sqlite3``` instalados pelo menos (ta
 - [x] Elaboração da estrutura de dados de produto
 - [x] Configuração para usar banco de dados
 - [x] Criação dos services de produtos
-- [ ] Configuração do scotty
+- [x] Configuração do scotty
 - [ ] Criação do controller de produtos
-- [ ] Elaboração dos endpoints
-- [ ] Configuração do container para postgresql
+- [ ] Documentação dos endpoints
+- [ ] Documentação do projeto
 - [ ] Comparação de código com o projeto anterior
 
 ## Referências

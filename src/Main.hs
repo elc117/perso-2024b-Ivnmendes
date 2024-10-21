@@ -4,19 +4,28 @@ import Control.Monad.IO.Class (liftIO)
 import Database.Persist()
 import Database.Persist.Sqlite
 import Control.Monad (void)
+import qualified Web.Scotty as Scotty       -- Necessário pois o método get do scotty entra em conflito com get do persistent
+
+import Network.Wai.Middleware.RequestLogger (logStdoutDev)
 
 import Models.Product
 import Services.ProductsServices
+import Routes.Routes(routes)                --confuso
 
 main :: IO ()
 main = do
-    runSqlite "apiHaskell.db" $ do
+    putStrLn "Servidor iniciado em http://localhost:3000"
+    Scotty.scotty 3000 $ do
+        Scotty.middleware logStdoutDev
+        routes
+        
+    -- runSqlite "apiHaskell.db" $ do
         -- Executa as migrações
-        void $ runMigration migrateAll
+        -- void $ runMigration migrateAll
 
     -- Pega todos os produtos
-        products <- getAllProducts
-        liftIO $ print (products :: [(Key Products, Products)])
+        -- products <- getAllProducts
+        -- liftIO $ print (products :: [(Key Products, Products)])
     -- Pega um produto pelo id
         -- products <- getProductById 2
         -- liftIO $ print (products :: Maybe Products)
