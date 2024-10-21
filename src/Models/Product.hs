@@ -1,17 +1,15 @@
-{-# LANGUAGE EmptyDataDecls             #-}
-{-# LANGUAGE FlexibleContexts           #-}
+{-# LANGUAGE DataKinds                  #-}
+{-# LANGUAGE DerivingStrategies         #-}
+{-# LANGUAGE FlexibleInstances          #-}
 {-# LANGUAGE GADTs                      #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE MultiParamTypeClasses      #-}
 {-# LANGUAGE OverloadedStrings          #-}
 {-# LANGUAGE QuasiQuotes                #-}
+{-# LANGUAGE StandaloneDeriving         #-}
 {-# LANGUAGE TemplateHaskell            #-}
 {-# LANGUAGE TypeFamilies               #-}
-{-# LANGUAGE DerivingStrategies         #-}
-{-# LANGUAGE StandaloneDeriving         #-}
 {-# LANGUAGE UndecidableInstances       #-}
-{-# LANGUAGE DataKinds                  #-}
-{-# LANGUAGE FlexibleInstances          #-}
 
 module Models.Product where
 
@@ -24,3 +22,19 @@ Products
     price Double
     deriving Show
 |]
+
+data ProductData = ProductData
+    {
+        name      :: String
+    ,   brand     :: String
+    ,   price     :: Double
+    } deriving (Show)
+
+getName :: ProductData -> String
+getName p = name p
+
+getBrand :: ProductData -> String
+getBrand p = brand p
+
+getPrice :: ProductData -> Double
+getPrice p = price p
