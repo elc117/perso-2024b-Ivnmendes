@@ -27,6 +27,7 @@ executable perso-
         ,aeson
         ,bytestring
         ,http-types
+        ,wai-middleware-static
     other-modules:    
         Models.Product
         ,Services.ProductsServices
