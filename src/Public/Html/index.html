@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentação de Endpoints</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    h1, h2 {
+      color: #333;
+    }
+
+    h3 {
+      margin-top: 30px;
+      color: #0056b3;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    ul li {
+      margin-bottom: 10px;
+    }
+
+    code.inLineCode {
+      background-color: #eaeaea;
+      padding: 3px 6px;
+      border-radius: 5px;
+    }
+
+    pre {
+      background-color: #272822;
+      color: #f8f8f2;
+      padding: 15px;
+      border-radius: 5px;
+      overflow: auto;
+      margin-bottom: 20px;
+    }
+
+    code.boxCode {
+      padding: 3px 6px;
+      border-radius: 5px;
+    }
+
+    hr {
+      border: none;
+      height: 1px;
+      background-color: #ddd;
+      margin: 40px 0;
+    }
+
+    li ul {
+      margin-left: 20px;
+    }
+
+    strong {
+      color: #333;
+    }
+
+    /* Erros comuns em vermelho */
+    .error {
+      color: #d9534f;
+    }
+
+    /* Sucessos em verde */
+    .success {
+      color: #5cb85c;
+    }
+
+  </style>
+</head>
+<body>
+
+<h1>Endpoints</h1>
+
+<h2>Produtos</h2>
+<ul>
+    <li><h3>getAllProducts</h3></li>
+    <ul>
+    <li><strong>Descrição:</strong> Pega todos os produtos do sistema.</li>
+    <li><strong>URL:</strong> <code class="inLineCode">/products</code></li>
+    <li><strong>Método:</strong> <code class="inLineCode">GET</code></li>
+    <li><strong>Request body:</strong> Nenhum</li>
+    <li><strong class="success">Response: 200 Ok</strong></li>
+    </ul>
+
+    <pre><code class="boxCode">{
+    "products": [
+        {
+        "brand": "Marca Exemplo",
+        "name": "produto",
+        "price": 80
+        }
+    ]
+    }
+    </code></pre>
+
+    <hr>
+
+    <li><h3>getProductById</h3></li>
+    <ul>
+    <li><strong>Descrição:</strong> Pega um produto do sistema pelo id.</li>
+    <li><strong>URL:</strong> <code class="inLineCode">/products/:id</code></li>
+    <li><strong>Método:</strong> <code class="inLineCode">GET</code></li>
+    <li><strong>Parâmetros da URL</strong></li>
+    <ul>
+        <li><code class="inLineCode">id</code>: ID do produto pretendido.</li>
+    </ul>
+    <li><strong>Request body:</strong> Nenhum</li>
+    <li><strong class="success">Response: 200 Ok</strong></li>
+    </ul>
+
+    <pre><code class="boxCode">{
+    "products": {
+        "brand": "Marca Exemplo",
+        "name": "produto",
+        "price": 80
+    }
+    }
+    </code></pre>
+
+    <ul>
+    <li><strong class="error">Erros comuns</strong></li>
+    <ul>
+        <li><code class="inLineCode">404 Nenhum produto encontrado com esse id</code>: Não existe produto cadastrado com esse id.</li>
+    </ul>
+    </ul>
+
+    <hr>
+
+    <li><h3>createProduct</h3></li>
+    <ul>
+    <li><strong>Descrição:</strong> Cria um novo produto.</li>
+    <li><strong>URL:</strong> <code class="inLineCode">/products</code></li>
+    <li><strong>Método:</strong> <code class="inLineCode">POST</code></li>
+    <li><strong>Request body:</strong></li>
+    </ul>
+
+    <pre><code class="boxCode">{
+    "name": "string",
+    "brand": "string",
+    "price": "double"
+    }
+    </code></pre>
+
+    <ul>
+    <li><code class="inLineCode">name</code>: Deve ter entre 1 e 3 caracteres.</li>
+    <li><code class="inLineCode">brand</code>: Deve ter entre 1 e 3 caracteres.</li>
+    <li><code class="inLineCode">price</code>: Deve ser maior que 0.</li>
+    </ul>
+    <ul>
+    <li><strong class="success">Response: 201 Created</strong></li>
+    </ul>
+
+    <pre><code class="boxCode">{
+    "products": [
+        3,
+        {
+        "brand": "Marca Exemplo",
+        "name": "Produto Exemplo",
+        "price": 99.99
+        }
+    ]
+    }
+    </code></pre>
+
+    <ul>
+    <li><strong class="error">Erros comuns</strong></li>
+    <ul>
+        <li><code class="inLineCode">400 Um ou mais campos inválidos</code>: Body preenchido incorretamente.</li>
+    </ul>
+    </ul>
+
+    <hr>
+
+    <li><h3>deleteProduct</h3></li>
+    <ul>
+    <li><strong>Descrição:</strong> Deleta um produto do sistema pelo id.</li>
+    <li><strong>URL:</strong> <code class="inLineCode">/products/:id</code></li>
+    <li><strong>Método:</strong> <code class="inLineCode">DELETE</code></li>
+    <li><strong>Parâmetros da URL</strong></li>
+    <ul>
+        <li><code class="inLineCode">id</code>: ID do produto pretendido.</li>
+    </ul>
+    <li><strong>Request body:</strong> Nenhum</li>
+    <li><strong class="success">Response: 204 No content</strong></li>
+    </ul>
+
+    <ul>
+    <li><strong class="error">Erros comuns</strong></li>
+    <ul>
+        <li><code class="inLineCode">404 Produto não encontrado</code>: Não existe produto cadastrado com esse id.</li>
+    </ul>
+    </ul>
+
+    <hr>
+
+    <li><h3>updateProductName</h3></li>
+    <ul>
+    <li><strong>Descrição:</strong> Atualiza o nome de um produto existente.</li>
+    <li><strong>URL:</strong> <code class="inLineCode">/products/:id/name</code></li>
+    <li><strong>Método:</strong> <code class="inLineCode">PATCH</code></li>
+    <li><strong>Parâmetros da URL</strong></li>
+    <ul>
+        <li><code class="inLineCode">id</code>: ID do contribuidor pretendido.</li>
+    </ul>
+    <li><strong>Request body:</strong></li>
+    </ul>
+
+    <pre><code class="boxCode">{
+    "name": "string"
+    }
+    </code></pre>
+
+    <ul>
+    <li><code class="inLineCode">name</code>: Deve ter entre 1 e 3 caracteres.</li>
+    <li><strong class="success">Response: 200 Ok</strong></li>
+    </ul>
+
+    <pre><code class="boxCode">{
+    "products": [
+        3,
+        {
+        "brand": "Marca Exemplo",
+        "name": "Novo Nome",
+        "price": 99.99
+        }
+    ]
+    }
+    </code></pre>
+
+    <ul>
+    <li><strong class="error">Erros comuns</strong></li>
+    <ul>
+        <li><code class="inLineCode">400 Nome inválido</code>: Body preenchido incorretamente.</li>
+        <li><code class="inLineCode">404 Produto não encontrado</code>: Não existe produto cadastrado com esse id.</li>
+    </ul>
+    </ul>
+
+    <hr>
+
+    <li><h3>updateProductBrand</h3></li>
+    <ul>
+    <li><strong>Descrição:</strong> Atualiza a marca de um produto existente.</li>
+    <li><strong>URL:</strong> <code class="inLineCode">/products/:id/brand</code></li>
+    <li><strong>Método:</strong> <code class="inLineCode">PATCH</code></li>
+    <li><strong>Parâmetros da URL</strong></li>
+    <ul>
+        <li><code class="inLineCode">id</code>: ID do produto pretendido.</li>
+    </ul>
+    <li><strong>Request body:</strong></li>
+    </ul>
+
+    <pre><code class="boxCode">{
+    "brand": "string"
+    }
+    </code></pre>
+
+    <ul>
+    <li><code class="inLineCode">age</code>: Deve ter entre 1 e 3 caracteres.</li>
+    <li><strong class="success">Response: 200 Ok</strong></li>
+    </ul>
+
+    <pre><code class="boxCode">{
+    "products": [
+        3,
+        {
+        "brand": "Marca Nova",
+        "name": "Nome Exemplo",
+        "price": 99.99
+        }
+    ]
+    }
+    </code></pre>
+
+    <ul>
+    <li><strong class="error">Erros comuns</strong></li>
+    <ul>
+        <li><code class="inLineCode">400 Marca inválida</code>: Body preenchido incorretamente.</li>
+        <li><code class="inLineCode">404 Produto não encontrado</code>: Não existe produto cadastrado com esse id.</li>
+    </ul>
+    </ul>
+
+    <hr>
+
+    <li><h3>updateProductPrice</h3></li>
+    <ul>
+    <li><strong>Descrição:</strong> Atualiza o preço de um produto existente.</li>
+    <li><strong>URL:</strong> <code class="inLineCode">/products/:id/price</code></li>
+    <li><strong>Método:</strong> <code class="inLineCode">PATCH</code></li>
+    <li><strong>Parâmetros da URL</strong></li>
+    <ul>
+        <li><code class="inLineCode">id</code>: ID do produto pretendido.</li>
+    </ul>
+    <li><strong>Request body:</strong></li>
+    </ul>
+
+    <pre><code class="boxCode">{
+    "price": "double"
+    }
+    </code></pre>
+
+    <ul>
+    <li><code class="inLineCode">price</code>: Deve ser maior que 0.</li>
+    <li><strong class="success">Response: 200 Ok</strong></li>
+    </ul>
+
+    <pre><code class="boxCode">{
+    "products": [
+        3,
+        {
+        "brand": "Marca Exemplo",
+        "name": "Nome Exemplo",
+        "price": 150
+        }
+    ]
+    }
+    </code></pre>
+
+    <ul>
+    <li><strong class="error">Erros comuns</strong></li>
+    <ul>
+        <li><code class="inLineCode">400 Preço inválido</code>: Body preenchido incorretamente.</li>
+        <li><code class="inLineCode">404 Produto não encontrado</code>: Não existe produto cadastrado com esse id.</li>
+    </ul>
+    </ul>
+</ul>
+</body>
+</html>

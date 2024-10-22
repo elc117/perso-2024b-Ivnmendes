@@ -5,6 +5,9 @@
 Use ```cabal update && cabal build && cabal run -v0``` no terminal dentro do diretório principal.
 Necessário ter ```ghc```, ```cabal``` e ```sqlite3``` instalados pelo menos (talvez tenha mais dependências, o container está configurado para rodar sem configuração adicional).
 
+## Endpoints
+Acesse ```localhost:3000/``` para ver a documentação dos endpoints da api. [Também pode clicar aqui](/doc/README.md)
+
 ## **TODO List**
 
 - [x] Configuração do container
@@ -12,7 +15,7 @@ Necessário ter ```ghc```, ```cabal``` e ```sqlite3``` instalados pelo menos (ta
 - [x] Configuração para usar banco de dados
 - [x] Criação dos services de produtos
 - [x] Configuração do scotty
-- [ ] Criação do controller de produtos
+- [x] Criação do controller de produtos
 - [ ] Documentação dos endpoints
 - [ ] Documentação do projeto
 - [ ] Comparação de código com o projeto anterior
@@ -28,3 +31,4 @@ Links usados para consulta durante o trabalho
 - [Doc da biblioteca persistent](https://hackage.haskell.org/package/persistent-2.14.6.3/docs/Database-Persist-Class.html)
   - Mais precisamente é a página que explica o uso das funções de manipulação do banco de dados (crud)
 - [Como construir uma API REST com haskell](https://dev.to/fabianveal/building-a-rest-api-with-haskell-2d54)
+- [Prompt usado para construir a documentação](https://chatgpt.com/share/67181495-139c-8010-9ed1-b9be3bad79f9)
