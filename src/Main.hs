@@ -1,6 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-import Control.Monad.IO.Class (liftIO)
 import Database.Persist()
 import Database.Persist.Sqlite
 import Control.Monad (void)
@@ -9,11 +8,16 @@ import qualified Web.Scotty as Scotty       -- Necessário pois o método get do
 import Network.Wai.Middleware.RequestLogger (logStdoutDev)
 
 import Models.Product
-import Services.ProductsServices
 import Routes.Routes(routes)                --confuso
+
+initializeDb :: IO ()
+initializeDb = runSqlite "apiHaskell.db" $ do
+    -- Executa as migrações
+    void $ runMigration migrateAll
 
 main :: IO ()
 main = do
+    initializeDb
     putStrLn "Servidor iniciado em http://localhost:3000"
     Scotty.scotty 3000 $ do
         Scotty.middleware logStdoutDev

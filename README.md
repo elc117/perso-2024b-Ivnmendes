@@ -27,3 +27,4 @@ Links usados para consulta durante o trabalho
 - [Explicação básica da biblioteca persistent](https://www.yesodweb.com/book/persistent)
 - [Doc da biblioteca persistent](https://hackage.haskell.org/package/persistent-2.14.6.3/docs/Database-Persist-Class.html)
   - Mais precisamente é a página que explica o uso das funções de manipulação do banco de dados (crud)
+- [Como construir uma API REST com haskell](https://dev.to/fabianveal/building-a-rest-api-with-haskell-2d54)
