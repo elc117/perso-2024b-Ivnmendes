@@ -8,7 +8,7 @@ import Data.Aeson
 import Database.Persist.Sqlite (runSqlite)
 import GHC.Generics (Generic)
 import Network.HTTP.Types.Status
-import Web.Scotty (json, ActionM, param, status, jsonData)
+import Web.Scotty (json, ActionM, pathParam, status, jsonData)
 
 import qualified Services.ProductsServices as ProductServices
 import Models.Product
@@ -39,7 +39,7 @@ getAllProducts = do
 
 getProductById :: ActionM ()
 getProductById = do
-    productId <- param "id"
+    productId <- pathParam "id"
     products <- liftIO $ runSqlite "apiHaskell.db" $ ProductServices.getProductById productId
     case products of
         Just _ -> do                      
@@ -55,7 +55,7 @@ createProduct = do
     products <- liftIO $ runSqlite "apiHaskell.db" $ ProductServices.createProduct p
     case products of
         Just _ -> do                      
-            status status200
+            status status201
             json $ object ["products" .= products]
         Nothing -> do
             status status400 
@@ -63,7 +63,7 @@ createProduct = do
 
 deleteProduct :: ActionM ()
 deleteProduct = do
-    productId <- param "id"
+    productId <- pathParam "id"
     deletedRows <- liftIO $ runSqlite "apiHaskell.db" $ ProductServices.deleteProduct productId
     if deletedRows
         then
@@ -74,42 +74,51 @@ deleteProduct = do
 
 updateProductName :: ActionM ()
 updateProductName = do
-    productId <- param "id"
+    productId <- pathParam "id"
     body <- jsonData :: ActionM UpdateProductNameData
     let productName = Controllers.ProductController.name body
     updatedProduct <- liftIO $ runSqlite "apiHaskell.db" $ ProductServices.updateProductName productId productName
     case updatedProduct of
-        Just p -> do                      
-            status status201
+        Right p -> do
+            status status200 
             json $ object ["products" .= p]
-        Nothing -> do
+        Left ProductServices.InvalidRequest -> do
             status status400 
             json $ object ["message" .= ("Nome inválido" :: String)]
+        Left ProductServices.ProductNotFound -> do
+            status status404
+            json $ object ["message" .= ("Produto não encontrado" :: String)]
 
 updateProductBrand :: ActionM ()
 updateProductBrand = do
-    productId <- param "id"
+    productId <- pathParam "id"
     body <- jsonData :: ActionM UpdateProductBrandData
     let productBrand = Controllers.ProductController.brand body
     updatedProduct <- liftIO $ runSqlite "apiHaskell.db" $ ProductServices.updateProductBrand productId productBrand
     case updatedProduct of
-        Just p -> do                      
-            status status201
+        Right p -> do                      
+            status status200
             json $ object ["products" .= p]
-        Nothing -> do
+        Left ProductServices.InvalidRequest -> do
             status status400 
             json $ object ["message" .= ("Marca inválida" :: String)]
+        Left ProductServices.ProductNotFound -> do
+            status status404
+            json $ object ["message" .= ("Produto não encontrado" :: String)] 
 
 updateProductPrice :: ActionM ()
 updateProductPrice = do
-    productId <- param "id"
+    productId <- pathParam "id"
     body <- jsonData :: ActionM UpdateProductPriceData
     let productPrice = Controllers.ProductController.price body
     updatedProduct <- liftIO $ runSqlite "apiHaskell.db" $ ProductServices.updateProductPrice productId productPrice
     case updatedProduct of
-        Just p -> do                      
-            status status201
+        Right p -> do                      
+            status status200
             json $ object ["products" .= p]
-        Nothing -> do
+        Left ProductServices.InvalidRequest -> do
             status status400 
             json $ object ["message" .= ("Preço inválido" :: String)]
+        Left ProductServices.ProductNotFound -> do
+            status status404
+            json $ object ["message" .= ("Produto não encontrado" :: String)]
