@@ -16,7 +16,7 @@ Acesse ```localhost:3000/``` para ver a documentação dos endpoints da api. [Ta
 - [x] Criação dos services de produtos
 - [x] Configuração do scotty
 - [x] Criação do controller de produtos
-- [ ] Documentação dos endpoints
+- [x] Documentação dos endpoints
 - [ ] Documentação do projeto
 - [ ] Comparação de código com o projeto anterior
 
