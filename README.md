@@ -25,7 +25,6 @@
     - [***Escopo pretendido **x** Escopo realizado***](#escopo-pretendido-x-escopo-realizado)
     - [***Conteúdos utilizados que não foram abordados em aula***](#conteúdos-utilizados-que-não-foram-abordados-em-aula)
   - [Comparação de código com o projeto anterior](#comparação-de-código-com-o-projeto-anterior)
-  - [Considerações finais](#considerações-finais)
   - [Referências](#referências)
 
 ## Tema
@@ -46,6 +45,7 @@ Acesse ```localhost:3000/``` para ver a documentação dos endpoints da api. [Ta
 ### ***Criação da estrutura de dados para armazenar o tipo Produto***
 
 Como sugerido pela professora, implementei primeiro  Produto em uma estrutura de dados do tipo ```data```, deixando a implementação no banco de dados para depois. No fim, acabei reutilizando essa implementação mais para frente no projeto.
+
 ```./src/Entities/Product.hs```
 
 ~~~haskell
@@ -75,6 +75,7 @@ As funções get foram criadas com o objetivo de facilitar o acesso aos atributo
 Aqui vieram as primeiras dores de cabeça do projeto. Inicialmente minha ideia era usar postgreSQL ou MySql, porém, após gastar algumas horas tentando configurar o ```persistent``` com esses bancos de dados, acabei desistindo e optei por usar SQLite, pois no repositório da biblioteca haviam instruções de como configurar. Foi nessa etapa que comecei a usar o gerenciador de dependências ```cabal```, o que auxiliou muito no desenvolvimento alternado entre o codespaces e localmente.
 
 Nessa etapa a estrutura de dados responsável por armazenar o Produto foi alterado a fim de trabalhar com o banco de dados.
+
 ```./src/Models/Product.hs```
 
 ~~~haskell
@@ -109,6 +110,7 @@ Basicamente o ```main``` está executando três funções:
 Decidi deixar model, service e controller separados para facilitar a modularização do código, permitindo testar os serviços de Produto individualmente antes de implementar o ```Scotty```. O service é basicamente responsável por executar as regras de negócio e realizar as operações no banco de dados. Não tive grandes problemas nessa etapa, apenas uma pequena dificuldade com o tipo de retorno (essa parte resolvi com auxílio da IA). Aqui reaproveitei a estrutura ```data``` criada anteriormente para passar como argumento para algumas funções. Criei também um arquivo ```./src/Util/Validators.hs``` com as validações dos campos.
 
 Operações no banco de dados:
+
 ```.src/Services/ProductsServices.hs```
 
 ~~~haskell
@@ -399,7 +401,7 @@ Basicamente esses models junto com um mecanismo de autenticação eram responsá
 
 ## Comparação de código com o projeto anterior
 
-## Considerações finais
+[Clique aqui](/doc/comparacao.MD)
 
 ## Referências
 
