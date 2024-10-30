@@ -25,6 +25,7 @@
     - [***Escopo pretendido **x** Escopo realizado***](#escopo-pretendido-x-escopo-realizado)
     - [***Conteúdos utilizados que não foram abordados em aula***](#conteúdos-utilizados-que-não-foram-abordados-em-aula)
   - [Comparação de código com o projeto anterior](#comparação-de-código-com-o-projeto-anterior)
+  - [Vídeo testando o projeto](#vídeo-testando-o-projeto)
   - [Referências](#referências)
 
 ## Tema
@@ -402,6 +403,10 @@ Basicamente esses models junto com um mecanismo de autenticação eram responsá
 ## Comparação de código com o projeto anterior
 
 [Clique aqui](/doc/comparacao.MD)
+
+## Vídeo testando o projeto
+
+[Clique aqui](https://youtu.be/TGWYgGvhMEQ)
 
 ## Referências
 
